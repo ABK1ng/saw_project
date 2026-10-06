@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавление металла</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <label>
+            <p>Название</p>
+            <input type="text" name="material_name">
+        </label>
+        <label>
+            <p>Название</p>
+            <input type="text" name="material_quantity">
+        </label>
+        <label>
+            <button type="submit">Сохранить</button>
+        </label>
+    </form>
+</body>
+</html>
