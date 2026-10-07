@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Material
+from .forms import MaterialForm
 
 # Create your views here.
 
@@ -9,10 +10,16 @@ def material_list(request):
 
 def material_add(request):
     if request.method == "POST":
-        material = Material()
-        material.name = request.POST.get('material_name')
-        material.quantity = request.POST.get('material_quantity')
-        material.save()
-        return redirect ('material_list')
+        # Передаем данные из формы в наш класс MaterialForm
+        form = MaterialForm(request.POST)
+        
+        # Django сам проверит данные на ошибки (валидация)
+        if form.is_valid():
+            form.save()  # <-- МАГИЯ: Django сам создаст объект и сохранит его в БД!
+            return redirect('material_list')
     else:
-        return render(request, 'saw_warehouse/material_add.html')
+        # Если это обычный GET-запрос, создаем пустую форму
+        form = MaterialForm()
+    
+    # Передаем форму в шаблон
+    return render(request, 'saw_warehouse/material_add.html', {'form': form})

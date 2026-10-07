@@ -7,19 +7,16 @@
     <title>Добавление металла</title>
 </head>
 <body>
+    <h2>Добавить новый материал на склад</h2>
     <form method="POST">
         {% csrf_token %}
-        <label>
-            <p>Маркировка</p>
-            <input type="text" name="material_name">
-        </label>
-        <label>
-            <p>Количество</p>
-            <input type="number" name="material_quantity" required min="1">
-        </label>
-        <label>
-            <button type="submit">Сохранить</button>
-        </label>
+        
+        <!-- ВОТ ОНА, МАГИЯ DJANGO: одна строка заменяет весь ручной HTML -->
+        {{ form.as_p }} 
+        
+        <br>
+        <button type="submit">Сохранить</button>
+        <a href="{% url 'material_list' %}">Отмена</a>
     </form>
 </body>
 </html>
