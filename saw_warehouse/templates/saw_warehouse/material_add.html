@@ -10,12 +10,12 @@
     <form method="POST">
         {% csrf_token %}
         <label>
-            <p>Название</p>
+            <p>Маркировка</p>
             <input type="text" name="material_name">
         </label>
         <label>
-            <p>Название</p>
-            <input type="text" name="material_quantity">
+            <p>Количество</p>
+            <input type="number" name="material_quantity" required min="1">
         </label>
         <label>
             <button type="submit">Сохранить</button>
